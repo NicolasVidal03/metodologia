@@ -20,10 +20,8 @@ const App = () => {
           </div>
           <ul className="navbar-list">
             <li className="navbar-item"><Link to="/home">Home</Link></li>
+            <li className="navbar-item"><Link to="/perritoperdidoform">Registrar Perrito Perdido</Link></li>
             <li className="navbar-item"><Link to="/login">Login</Link></li>
-            <li className="navbar-item"><Link to="/register">Register</Link></li>
-            <li className="navbar-item"><Link to="/perritoperdidoform">Vi un Perrito Perdido</Link></li>
-            
             {
               user !== null && (
                 <li className='navbar-item'><Link to="home" onClick={logout}>Cerrar Sesion</Link></li>
