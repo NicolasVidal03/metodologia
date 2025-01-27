@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import auth, user, estado_perro
+from app.routes import auth, user, registrar_perrito, perritos
 from app.config import engine
 from app.models import usuario
 
@@ -20,7 +20,8 @@ app.add_middleware(
 
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(user.router, prefix="/users", tags=["users"])
-app.include_router(estado_perro.router, prefix="/perro", tags=["perro"])
+app.include_router(registrar_perrito.router, prefix="/perro", tags=["perro"])
+app.include_router(perritos.router, prefix="/perritos", tags=["perritos"])
 
 @app.get("/")
 async def root():
