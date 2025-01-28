@@ -1,13 +1,12 @@
 import React, { useContext, useState } from 'react';
-import './PerritoPerdidoForm.css';
+import '../PerritoPerdido/PerritoPerdidoForm.css';
 import { AuthContext } from '../../AuthContext';
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
 
-const PerritoPerdidoForm = () => {
+const PerritoEncontradoForm = () => {
   const [foto, setFoto] = useState(null);
   const [descripcion, setDescription] = useState('');
-  const [nombre, setNombre] = useState('');
   const [raza, setRaza] = useState('');
   const [color, setColor] = useState('');
   const [genero, setGenero] = useState('');
@@ -19,8 +18,7 @@ const PerritoPerdidoForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user)
-    console.log({ foto, descripcion, nombre, raza, color, direccion, date });
-
+    console.log({ foto, descripcion, raza, color, direccion, date });
 
 
     try {
@@ -28,14 +26,14 @@ const PerritoPerdidoForm = () => {
         descripcion: descripcion,
         direccion_visto: direccion,
         fecha: date,
-        estado: 1,
+        estado: 0,
       });
       console.log(response_estado.data[0]);
       const response = await axios.post('http://localhost:8000/perro/data', {
         raza: raza,
         color: color,
         genero: genero,
-        nombre: nombre,
+        nombre: 'Perro encontrado',
         usuario_id: user.id,
         estado_perro_id: response_estado.data[0].id
       });
@@ -62,13 +60,6 @@ const PerritoPerdidoForm = () => {
           placeholder="Descripción del perrito" 
           value={descripcion}
           onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <input 
-          type="text" 
-          placeholder="Nombre del perrito" 
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
           required
         />
         <input 
@@ -109,4 +100,4 @@ const PerritoPerdidoForm = () => {
   );
 };
 
-export default PerritoPerdidoForm;
+export default PerritoEncontradoForm;
