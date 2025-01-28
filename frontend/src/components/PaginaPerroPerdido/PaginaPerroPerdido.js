@@ -27,14 +27,13 @@ const PaginaPerrosPerdidos = () => {
     if (perritos) {
       let perritos_perdidos = perritos.filter((perro) => perro.estado.estado === 1);
       setPerrosPerdidos(perritos_perdidos);
+      console.log(perritos_perdidos)
     }
   }, [perritos]);
 
   return (
     <div id="pagina-perros-perdidos" className="pagina-perros-perdidos">
       <h1 id="titulo-perros-perdidos" className="titulo">Perros Perdidos</h1>
-
-      
 
       <button
         className="dog-button"
@@ -51,7 +50,21 @@ const PaginaPerrosPerdidos = () => {
             className="perro-card"
             key={index}
             onClick={() => navigate(`/perfil-perro/${perro.id}`, { state: { perro } })}>
-        
+            
+            {perro.foto && perro.foto[0] ? (
+              <img
+                src={`http://localhost:8000/imagen/${perro.foto[0].direccion_foto}`}
+                alt={`Foto de ${perro.nombre}`}
+                className="perro-foto"
+              />
+            ) : (
+              <img
+                src="/path/to/placeholder-image.jpg"
+                alt="Imagen no disponible"
+                className="perro-foto"
+              />
+            )}
+
             <h3 className="perro-nombre">{perro.nombre}</h3>
 
             <div className="perro-info">
