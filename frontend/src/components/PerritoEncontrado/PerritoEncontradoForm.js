@@ -73,7 +73,7 @@ const PerritoEncontradoForm = () => {
  
   return (
     <div className="perrito-perdido-form-container">
-      <h2>Reporta un Perrito Perdido</h2>
+      <h2>Reporta un Perrito Encontrado</h2>
       <form onSubmit={handleSubmit} className="perrito-perdido-form">
       <input 
           className='input-img'
