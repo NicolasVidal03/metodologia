@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./PaginaPerroPerdido.css";
+import "../PaginaPerroEncontrado/PaginaPerroEncontrado";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 

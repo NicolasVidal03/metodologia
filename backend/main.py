@@ -28,8 +28,4 @@ app.include_router(get_foto.router)
 
 @app.get("/")
 async def root():
-    return {"message": "Bienvenido a la API del Taller de Sistemas de Información"}
-
-@app.get("/hello")
-async def hello():
-    return {"message": "Hola Papa Jhuls"}
+    return {"message": "Bienvenido a la API de la aplicación para la búsqueda y localización de canes"}

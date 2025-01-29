@@ -65,12 +65,14 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 10px;
-    width: 90%; /* Ocupa el 90% del ancho del contenedor en dispositivos móviles */
-    max-width: 400px; /* Máximo ancho en pantallas más grandes */
+    width: 25%; /* Ocupa el 90% del ancho del contenedor en dispositivos móviles */
+    max-width: 60%; /* Máximo ancho en pantallas más grandes */
+    height: 30rem;
     text-align: center;
     transition: transform 0.3s ease;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
   }
   
   .perro-card:hover {
@@ -80,7 +82,7 @@
   
   .perro-foto {
     width: 100%;
-    height: auto; /* Mantener proporción */
+    height: 40%; /* Mantener proporción */
     object-fit: cover;
     border-radius: 10px 10px 0 0; /* Redondeo solo en la parte superior */
   }
