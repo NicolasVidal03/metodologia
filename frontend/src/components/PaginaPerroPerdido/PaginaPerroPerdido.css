@@ -106,7 +106,21 @@
     transform: translate(-50%, -50%);
     text-align: center;
   }
+
+  .dog-button {
+    margin-top: 15px;
+    width: 50rem; 
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 20px;
+  }
   
+  .dog-button:hover {
+    background-color: #36a420;
+    color: white;
+    font-weight: bold;
+  }
+
   .spinner {
     width: 40px;
     height: 40px;
@@ -155,6 +169,7 @@
       width: 100%; /* Botón ocupa todo el ancho */
       font-size: 1rem;
       padding: 10px;
+      border-radius: 4px;
     }
     .filtro-perros-perdidos {
       max-width: 120px; /* Reducir el ancho en dispositivos móviles */

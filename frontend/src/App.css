@@ -25,6 +25,14 @@
   margin-left: 10px;
 }
 
+.brand-title a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.7rem;
+}
+
 .navbar-list {
   display: flex;
   justify-content: space-around;
