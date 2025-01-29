@@ -1,0 +1,139 @@
+.dog-recognition-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .dog-recognition-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .image-preview {
+    /* max-width: 35wv; */
+    width: 25vw;
+    /* max-height: 40%; */
+    height: 18vw;
+    margin: 20px 0;
+  }
+  
+  .image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  button {
+    padding: 12px 24px;
+    background-color: #388E3C;
+   
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #4bb02f;
+  }
+  
+  button:disabled {
+    background-color: #a3d7a4;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    padding: 15px;
+    background-color: #ffe6e6;
+    border-radius: 4px;
+    color: #cc0000;
+    margin: 20px 0;
+  }
+  
+  .info-message {
+    padding: 15px;
+    background-color: #e6f3ff;
+    border-radius: 4px;
+    color: #0066cc;
+    margin: 20px 0;
+  }
+  /* Estilo para el mensaje de carga */
+.loading-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+/* Estilo para el spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+  
+  .coincidencias-container {
+    margin-top: 30px;
+  }
+  
+  .coincidencias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    justify-items: center;
+  }
+  
+  .coincidencia-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+    width: 70%;
+    min-width:25%;
+    max-width: 35%;
+  }
+  
+  .coincidencia-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .coincidencia-imagen {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+  }
+  
+  .coincidencia-info {
+    padding: 15px;
+  }
+  
+  .coincidencia-info h4 {
+    margin: 0 0 10px 0;
+    color: #5b9a34;
+  }
+  
+  .coincidencia-info p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  .coincidencia-info strong {
+    color: #666;
+  }

@@ -8,6 +8,7 @@ import PerritoPerdidoForm from './components/PerritoPerdido/PerritoPerdidoForm';
 import PerritoEncontradoForm from './components/PerritoEncontrado/PerritoEncontradoForm';
 import PaginaPerrosPerdidos from './components/PaginaPerroPerdido/PaginaPerroPerdido';
 import PaginaPerrosEncontrados from './components/PaginaPerroEncontrado/PaginaPerroEncontrado';
+import DogRecognition from './components/DogRecognition/DogRecognition';
 import { AuthContext } from './AuthContext';
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
             <span className="brand-title"> <Link to="/home">Canes perdidos</Link></span>
           </div>
           <ul className="navbar-list">
+            <li className="navbar-item"><Link to="/buscador">Buscador</Link></li>
             <li className="navbar-item"><Link to="/perroperdido">Perros Perdidos</Link></li>
             <li className="navbar-item"><Link to="/perroencontrado">Perros Encontrados</Link></li>
             <li className="navbar-item"><Link to="/perritoperdidoform">Registrar Perrito Perdido</Link></li>
@@ -42,6 +44,7 @@ const App = () => {
           <Route path='/perritoencontradoform' element={<PerritoEncontradoForm/>}></Route>
           <Route path='/perroperdido' element={<PaginaPerrosPerdidos/>}/>
           <Route path='/perroencontrado' element={<PaginaPerrosEncontrados/>}/>
+          <Route path='/buscador' element={<DogRecognition/>}/>
         </Routes>
       </div>
     </Router>

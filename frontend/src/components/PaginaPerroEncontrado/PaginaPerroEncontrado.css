@@ -60,7 +60,15 @@
     gap: 20px;
     padding: 10px;
   }
+
+  .perro-info p {
+    margin: 0;
+  }
   
+  .perro-info{
+    margin-bottom: 20px;
+  }
+
   .perro-card {
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -92,7 +100,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     color: #333;
-    margin: 10px 0;
+    margin: 10px 0 20px 0;
   }
   
   .perro-info {
@@ -167,3 +175,17 @@
     }
   }
   
+
+  .dog-button {
+    margin-top: 15px;
+    width: 50rem; 
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 20px;
+  }
+  
+  .dog-button:hover {
+    background-color: #36a420;
+    color: white;
+    font-weight: bold;
+  }
