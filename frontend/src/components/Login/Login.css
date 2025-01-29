@@ -14,3 +14,11 @@
     color: #666;
     line-height: 1.6;
   }
+
+  .home-container a button {
+    border-radius: 20px;
+    height: 2rem;
+    width: 30rem;
+    background-color: transparent;
+    font-size: 1.2rem;
+  }
