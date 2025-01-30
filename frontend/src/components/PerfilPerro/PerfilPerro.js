@@ -1,15 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './PerfilPerro.css';
 import { FaArrowLeft } from 'react-icons/fa';
 import Mapa from '../Mapa';
+import axios from 'axios';
+import { AuthContext } from '../../AuthContext';
 
 const PerfilPerro = () => {
   const location = useLocation();
   const { perro } = location.state || {};
   const navigate = useNavigate();
   const [lat, lng] = perro ? perro.estado.coordenadas.split(",").map(coord => parseFloat(coord.trim())) : null;
-  
+  const {user} = useContext(AuthContext);
+
+  const handleChangeEstado = async () => {
+    const confirm = window.confirm('¿De verdad encontraste a tu perrito?')
+    if(confirm) {
+      try {
+        await axios.put(`http://127.0.0.1:8000/perritos/encontrado/${perro.id}`)
+        alert('Se registró al perrito como encontrado');
+        navigate('/home')
+      } catch {
+        console.log("Hubo un error")
+      }
+    }
+    else {
+      alert('Accion cancelada')
+    }
+  }
+
+
   if (!perro || !perro.id) {
     return (
       <div className="perfil-perro-page" style={{textAlign:"center"}}>
@@ -57,6 +77,8 @@ const PerfilPerro = () => {
                 <p><strong>Última ubicación:</strong> {perro.estado.direccion_visto}</p>
               </div>
             </div>
+            { ( user && user.id === perro.usuario.id ) && ( perro.estado.estado === 1 ) && (
+            <center><button onClick={handleChangeEstado}>Encontré a mi perro</button></center> )}
         </div>
       </div>
         )
