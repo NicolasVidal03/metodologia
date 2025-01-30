@@ -35,23 +35,28 @@ const PerfilPerro = () => {
           )}
 
           <h2>{perro.nombre}</h2>
-          <p> <strong>Raza:</strong> {perro.raza}</p>
-          <p><strong>Última ubicación:</strong> {perro.estado.direccion_visto}</p>
-          <div>
-            <h2>Ubicación</h2>
-            <Mapa lat={lat} lng={lng} />
-          </div>
-          <p><strong>Fecha de pérdida:</strong> {perro.estado.fecha}</p>
-          <p><strong>Descripción:</strong> {perro.estado.descripcion}</p>
-          <p><strong>Contacto:</strong> {perro.usuario.num_celular}</p>
-          <center><a
-                href={`https://wa.me/${perro.usuario.num_celular}?text=Hola, soy un usuario que encontró un perro y me gustaría coordinar la devolución de ${perro.nombre}.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="whatsapp-button"
-            >
-                Contactar por WhatsApp
-            </a></center>
+          <div className='perfil-perro-grande'>
+            <div className='perfil-perro-div'>
+              <p> <strong>Raza:</strong> {perro.raza}</p>
+              
+              
+              <p><strong>Fecha de pérdida:</strong> {perro.estado.fecha}</p>
+              <p><strong>Descripción:</strong> {perro.estado.descripcion}</p>
+              <p><strong>Contacto:</strong> {perro.usuario.num_celular}</p>
+              <center><a
+                    href={`https://wa.me/${perro.usuario.num_celular}?text=Hola, soy un usuario que encontró un perro y me gustaría coordinar la devolución de ${perro.nombre}.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="whatsapp-button"
+                >
+                    Contactar por WhatsApp
+                </a></center>
+              </div>
+              <div className='perfil-perro-div-map'>
+                <Mapa lat={lat} lng={lng} />
+                <p><strong>Última ubicación:</strong> {perro.estado.direccion_visto}</p>
+              </div>
+            </div>
         </div>
       </div>
         )

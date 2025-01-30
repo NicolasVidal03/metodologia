@@ -76,7 +76,7 @@ const PerritoPerdidoForm = () => {
           color: color,
           genero: genero,
           nombre: nombre,
-          usuario_id: user.id,
+          usuario_id: user ? user.id : 0,
           estado_perro_id: response_estado.data[0].id
         });
         console.log("Datos perro:", response.data)
@@ -97,70 +97,80 @@ const PerritoPerdidoForm = () => {
  
   return (
     <div className="perrito-perdido-form-container">
-      <h2>Reporta un Perrito Perdido</h2>
-      <form onSubmit={handleSubmit} className="perrito-perdido-form">
-        <input 
-          className='input-img'
-          type="file" 
-          accept="image/jpeg, image/png, image/jpg" 
-          onChange={handleFileChange}
-          id='file-upload'
-          required
-        />
-        <textarea 
-          placeholder="Descripción del perrito" 
-          value={descripcion}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <input 
-          type="text" 
-          placeholder="Nombre del perrito" 
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          required
-        />
-        <input 
-          type="text" 
-          placeholder="Direccion perdido" 
-          value={direccion}
-          onChange={(e) => setDireccion(e.target.value)}
-          required
-        />
-        <input 
-          type="date" 
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          required
-        />
-        <select defaultValue="" onChange={(e) => setGenero(e.target.value)}>
-          <option value="" disabled>Selecciona su género</option>
-          <option value="M">Macho</option>
-          <option value="H">Hembra</option>
-        </select>
-        <select defaultValue="" onChange={(e) => setRaza(e.target.value)}>
-          <option value="" disabled>Selecciona su raza</option>
-          <option value="Golden">Golden</option>
-          <option value="Yorki">Yorki</option>
-          <option value="Cocker Spaniel">Cocker</option>
-          <option value="Pastor Aleman">Pastor Alemán</option>
-        </select>
-        <select defaultValue="" onChange={(e) => setColor(e.target.value)}>
-          <option  value="" disabled>Selecciona su color</option>
-          <option value="Cafe">Cafe</option>
-          <option value="Blanco">Blanco</option>
-          <option value="Beige">Beige</option>
-          <option value="Negro">Negro</option>
-        </select>
-
-        <h3>Ubicación en el mapa:</h3>
-          <MapContainer center={[-17.39, -66.16]} zoom={12} style={{ height: '300px', width: '100%' }}>
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      <h2>Reporta un Perrito Encontrado</h2>
+      <form onSubmit={handleSubmit} className='container-perro-perdido'>
+        <div className="perrito-perdido-form">
+          <div className='perrito-perdido-div'>
+            <input 
+              className='input-img'
+              type="file" 
+              accept="image/jpeg, image/png, image/jpg" 
+              onChange={handleFileChange}
+              id='file-upload'
+              required
             />
-            <LocationMarker setLocation={setLocation} />
-            {location && <Marker position={location} icon={markerIcon} />}
-          </MapContainer>
+            <input 
+              type="text" 
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              required
+              placeholder='Nombre del perrito'
+              maxLength={30}
+            />
+            <textarea 
+              placeholder="Descripción del perrito" 
+              value={descripcion}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+              maxLength={200}
+            />
+            <input 
+              type="date" 
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+            />
+            <select defaultValue="" onChange={(e) => setGenero(e.target.value)} required>
+              <option value="" disabled>Selecciona su género</option>
+              <option value="M">Macho</option>
+              <option value="H">Hembra</option>
+            </select>
+            <select defaultValue="" onChange={(e) => setRaza(e.target.value)} required>
+              <option value="" disabled>Selecciona su raza</option>
+              <option value="Golden">Golden</option>
+              <option value="Yorki">Yorki</option>
+              <option value="Cocker Spaniel">Cocker</option>
+              <option value="Pastor Aleman">Pastor Alemán</option>
+            </select>
+            <select defaultValue="" onChange={(e) => setColor(e.target.value)} required>
+              <option  value="" disabled>Selecciona su color</option>
+              <option value="Cafe">Cafe</option>
+              <option value="Blanco">Blanco</option>
+              <option value="Beige">Beige</option>
+              <option value="Negro">Negro</option>
+            </select>
+          </div>
+          
+          <div className='perrito-perdido-div-map'>
+            <input 
+              type="text" 
+              placeholder="Direccion perdido" 
+              value={direccion}
+              onChange={(e) => setDireccion(e.target.value)}
+              required
+              maxLength={100}
+            />
+            <h3>Ubicación en el mapa:</h3>
+            <MapContainer center={[-17.39, -66.16]} zoom={12} style={{ height: '300px', width: '300px' }}>
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <LocationMarker setLocation={setLocation} />
+              {location && <Marker position={location} icon={markerIcon} />}
+            </MapContainer>
+          </div>
+        </div>
+
 
         <button type="submit">Enviar Reporte</button>
       </form>

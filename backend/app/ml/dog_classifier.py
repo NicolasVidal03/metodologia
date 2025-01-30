@@ -37,7 +37,6 @@ class DogClassifier:
             print("Inicializando modelo MobileNetV2...")
             self.model = MobileNetV2(weights="imagenet")
             
-            # Configurar Google Drive
             creds_path = os.path.join('app', 'credenciales', 'fotos-perritos-809194cdb9d7.json')
             if os.path.exists(creds_path):
                 credentials = service_account.Credentials.from_service_account_file(
