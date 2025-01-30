@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './PerfilPerro.css';
 import { FaArrowLeft } from 'react-icons/fa';
+import Mapa from '../Mapa';
 
 const PerfilPerro = () => {
   const location = useLocation();
   const { perro } = location.state || {};
   const navigate = useNavigate();
+  // const [lat] = perro.direccion_visto;
+  // const [lng] = perro.direccion_visto;
+  const [lat, lng] = perro.estado.direccion_visto.split(",").map(coord => parseFloat(coord.trim()));
+
+  // useEffect(() => {
+  //   const [lt, lg] = perro.direccion_visto.split(",").map(coord => parseFloat(coord.trim()));
+  //   setLat(lt); // Latitud de ejemplo (CDMX)
+  //   setLng(lg); // Longitud de ejemplo (CDMX)
+  // }, [perro]);
 
   if (!perro || !perro.id) {
     return (
@@ -35,6 +45,10 @@ const PerfilPerro = () => {
           <h2>{perro.nombre}</h2>
           <p> <strong>Raza:</strong> {perro.raza}</p>
           <p><strong>Última ubicación:</strong> {perro.estado.direccion_visto}</p>
+          <div>
+            <h2>Ubicación</h2>
+            <Mapa lat={lat} lng={lng} />
+          </div>
           <p><strong>Fecha de pérdida:</strong> {perro.estado.fecha}</p>
           <p><strong>Descripción:</strong> {perro.estado.descripcion}</p>
           <p><strong>Contacto:</strong> {perro.usuario.num_celular}</p>

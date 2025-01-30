@@ -3,6 +3,27 @@ import '../PerritoPerdido/PerritoPerdidoForm.css';
 import { AuthContext } from '../../AuthContext';
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+const markerIcon = new L.Icon({
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+});
+
+// Componente para seleccionar la ubicación en el mapa
+const LocationMarker = ({ setLocation }) => {
+  useMapEvents({
+    click(e) {
+      setLocation([e.latlng.lat, e.latlng.lng]);
+    },
+  });
+  return null;
+};
+
 
 const PerritoEncontradoForm = () => {
   const [foto, setFoto] = useState(null);
@@ -13,6 +34,7 @@ const PerritoEncontradoForm = () => {
   const [direccion, setDireccion] = useState('');
   const [date, setDate] = useState('');
   const { user } = useContext(AuthContext)
+  const [location, setLocation] = useState(null);
   const navigate = useNavigate();
 
 
@@ -40,7 +62,7 @@ const PerritoEncontradoForm = () => {
       console.log("Imagen subida:", data_foto.file_id)
       const response_estado = await axios.post('http://localhost:8000/perro/estado', {
         descripcion: descripcion,
-        direccion_visto: direccion,
+        direccion_visto: `${location[0]}, ${location[1]}`,
         fecha: date,
         estado: 0,
       });
@@ -121,6 +143,17 @@ const PerritoEncontradoForm = () => {
           <option value="Beige">Beige</option>
           <option value="Negro">Negro</option>
         </select>
+
+        <h3>Ubicación en el mapa:</h3>
+        <MapContainer center={[-16.5, -68.1]} zoom={12} style={{ height: '300px', width: '100%' }}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <LocationMarker setLocation={setLocation} />
+          {location && <Marker position={location} icon={markerIcon} />}
+        </MapContainer>
+
+
         <button type="submit">Enviar Reporte</button>
       </form>
     </div>
