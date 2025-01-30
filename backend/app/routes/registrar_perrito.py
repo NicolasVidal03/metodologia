@@ -11,6 +11,7 @@ router = APIRouter()
 class EstadoPerroNuevo(BaseModel):
     descripcion: str
     direccion_visto: str 
+    coordenadas: str
     fecha: date
     estado: int
 
@@ -27,6 +28,7 @@ class PerritoNuevo(BaseModel) :
 def registrar_estado(estado_perro: EstadoPerroNuevo, db: Session = Depends(get_db)):
     new_estado_perro = EstadoPerro(descripcion=estado_perro.descripcion, 
                                    direccion_visto=estado_perro.direccion_visto, 
+                                   coordenadas=estado_perro.coordenadas,
                                    fecha=estado_perro.fecha, 
                                    estado=estado_perro.estado)
     db.add(new_estado_perro)

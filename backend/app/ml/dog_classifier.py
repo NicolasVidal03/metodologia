@@ -138,6 +138,8 @@ class DogClassifier:
                                     'id': info['id'],
                                     'similitud': drive_confidence,
                                     'ubicacion': info.get('ubicacion', ''),
+                                    'color': info.get('color', ''),
+                                    'genero': info.get('genero', ''),
                                     'fecha': info.get('fecha', ''),
                                     'contacto': info.get('contacto', ''),
                                     'drive_id': info['drive_id'],
