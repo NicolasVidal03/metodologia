@@ -1,0 +1,63 @@
+.perfil-perro-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-perro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Usa el 100% de la altura de la ventana */
+    background-color: white;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas más pequeñas */
+    width: 100%;
+    min-height: 80vh;
+    box-sizing: border-box;
+}
+
+  
+.perfil-perro {
+    flex: 1; /* Toma el espacio disponible */
+    max-width: 50vw;
+    margin: 20px;
+    width: 100%;
+    background-color:rgba(76, 175, 80, 0.05); /* Fondo blanco con transparencia */
+    border-radius: 8px; /* Esquinas redondeadas */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 4px 10px rgba(93, 93, 93, 0.1); /* Sombra para darle profundidad */
+    text-align: left; /* Alinea todo el texto a la izquierda */
+    height: auto;
+}
+
+.perfil-perro-foto {
+    display: block; /* Asegura que la imagen se comporte como un bloque */
+    margin: 0 auto 20px auto; /* Centra la imagen horizontalmente */
+    width: 100%;
+    height: 20rem; /* Mantiene la relación de aspecto */
+    max-width: 300px; /* Limita el tamaño máximo de la imagen */
+    border-radius: 100px;
+    object-fit: cover;
+}
+  
+ .perfil-perro h2 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .perfil-perro p {
+    color: #555;
+    font-size: 1rem;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  
+@media (max-width: 1100px) {
+
+  .perfil-perro-container {
+    flex-wrap: nowrap;
+  }
+
+}

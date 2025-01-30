@@ -9,6 +9,7 @@ import PerritoEncontradoForm from './components/PerritoEncontrado/PerritoEncontr
 import PaginaPerrosPerdidos from './components/PaginaPerroPerdido/PaginaPerroPerdido';
 import PaginaPerrosEncontrados from './components/PaginaPerroEncontrado/PaginaPerroEncontrado';
 import DogRecognition from './components/DogRecognition/DogRecognition';
+import PerfilPerro from './components/PerfilPerro/PerfilPerro';
 import { AuthContext } from './AuthContext';
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
           <Route path='/perroperdido' element={<PaginaPerrosPerdidos/>}/>
           <Route path='/perroencontrado' element={<PaginaPerrosEncontrados/>}/>
           <Route path='/buscador' element={<DogRecognition/>}/>
+          <Route path="/perfil-perro/:id" element={<PerfilPerro />} />
         </Routes>
       </div>
     </Router>
