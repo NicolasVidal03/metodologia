@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './PerfilPerro.css';
 import { FaArrowLeft } from 'react-icons/fa';
@@ -8,16 +8,8 @@ const PerfilPerro = () => {
   const location = useLocation();
   const { perro } = location.state || {};
   const navigate = useNavigate();
-  // const [lat] = perro.direccion_visto;
-  // const [lng] = perro.direccion_visto;
-  const [lat, lng] = perro.estado.direccion_visto.split(",").map(coord => parseFloat(coord.trim()));
-
-  // useEffect(() => {
-  //   const [lt, lg] = perro.direccion_visto.split(",").map(coord => parseFloat(coord.trim()));
-  //   setLat(lt); // Latitud de ejemplo (CDMX)
-  //   setLng(lg); // Longitud de ejemplo (CDMX)
-  // }, [perro]);
-
+  const [lat, lng] = perro ? perro.estado.coordenadas.split(",").map(coord => parseFloat(coord.trim())) : null;
+  
   if (!perro || !perro.id) {
     return (
       <div className="perfil-perro-page" style={{textAlign:"center"}}>

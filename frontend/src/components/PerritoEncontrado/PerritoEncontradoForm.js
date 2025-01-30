@@ -55,14 +55,15 @@ const PerritoEncontradoForm = () => {
       });
 
       if(!response_foto.ok) {
-        console.log("Hubo un problema en la subida de la foto, comprueba tu conexión de internet");
+        alert("Hubo un problema en la subida de la foto, comprueba tu conexión de internet");
         throw new Error('Error en la subida de la foto');
       }
       const data_foto = await response_foto.json()
       console.log("Imagen subida:", data_foto.file_id)
       const response_estado = await axios.post('http://localhost:8000/perro/estado', {
         descripcion: descripcion,
-        direccion_visto: `${location[0]}, ${location[1]}`,
+        direccion_visto: direccion,
+        coordenadas: `${location[0]}, ${location[1]}`,
         fecha: date,
         estado: 0,
       });
@@ -131,9 +132,9 @@ const PerritoEncontradoForm = () => {
         </select>
         <select defaultValue="" onChange={(e) => setRaza(e.target.value)}>
           <option value="" disabled>Selecciona su raza</option>
-          <option value="Golgen">Golden</option>
-          <option value="Chapi">Chapi</option>
-          <option value="Bulldog">Bulldog</option>
+          <option value="Golden">Golden</option>
+          <option value="Yorki">Yorki</option>
+          <option value="Cocker Spaniel">Cocker</option>
           <option value="Pastor Aleman">Pastor Alemán</option>
         </select>
         <select defaultValue="" onChange={(e) => setColor(e.target.value)}>
@@ -145,7 +146,7 @@ const PerritoEncontradoForm = () => {
         </select>
 
         <h3>Ubicación en el mapa:</h3>
-        <MapContainer center={[-16.5, -68.1]} zoom={12} style={{ height: '300px', width: '100%' }}>
+        <MapContainer center={[-17.39, -66.16]} zoom={12} style={{ height: '300px', width: '100%' }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />

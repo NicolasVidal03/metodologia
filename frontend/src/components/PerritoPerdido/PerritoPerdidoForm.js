@@ -3,6 +3,27 @@ import './PerritoPerdidoForm.css';
 import { AuthContext } from '../../AuthContext';
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
+import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+const markerIcon = new L.Icon({
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+});
+
+// Componente para seleccionar la ubicación en el mapa
+const LocationMarker = ({ setLocation }) => {
+  useMapEvents({
+    click(e) {
+      setLocation([e.latlng.lat, e.latlng.lng]);
+    },
+  });
+  return null;
+};
+
 
 const PerritoPerdidoForm = () => {
   const [foto, setFoto] = useState(null);
@@ -14,6 +35,7 @@ const PerritoPerdidoForm = () => {
   const [direccion, setDireccion] = useState('');
   const [date, setDate] = useState('');
   const { user } = useContext(AuthContext)
+  const [location, setLocation] = useState(null);
   const navigate = useNavigate();
 
 
@@ -35,7 +57,7 @@ const PerritoPerdidoForm = () => {
         });
   
         if(!response_foto.ok) {
-          console.log("Hubo un problema en la subida de la foto, comprueba tu conexión de internet");
+          alert("Hubo un problema en la subida de la foto, comprueba tu conexión de internet");
           throw new Error('Error en la subida de la foto');
         }
         const data_foto = await response_foto.json()
@@ -43,6 +65,7 @@ const PerritoPerdidoForm = () => {
         const response_estado = await axios.post('http://localhost:8000/perro/estado', {
           descripcion: descripcion,
           direccion_visto: direccion,
+          coordenadas: `${location[0]}, ${location[1]}`,
           fecha: date,
           estado: 1,
         });
@@ -117,9 +140,9 @@ const PerritoPerdidoForm = () => {
         </select>
         <select defaultValue="" onChange={(e) => setRaza(e.target.value)}>
           <option value="" disabled>Selecciona su raza</option>
-          <option value="Golgen">Golden</option>
-          <option value="Chapi">Chapi</option>
-          <option value="Bulldog">Bulldog</option>
+          <option value="Golden">Golden</option>
+          <option value="Yorki">Yorki</option>
+          <option value="Cocker Spaniel">Cocker</option>
           <option value="Pastor Aleman">Pastor Alemán</option>
         </select>
         <select defaultValue="" onChange={(e) => setColor(e.target.value)}>
@@ -129,6 +152,16 @@ const PerritoPerdidoForm = () => {
           <option value="Beige">Beige</option>
           <option value="Negro">Negro</option>
         </select>
+
+        <h3>Ubicación en el mapa:</h3>
+          <MapContainer center={[-17.39, -66.16]} zoom={12} style={{ height: '300px', width: '100%' }}>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <LocationMarker setLocation={setLocation} />
+            {location && <Marker position={location} icon={markerIcon} />}
+          </MapContainer>
+
         <button type="submit">Enviar Reporte</button>
       </form>
     </div>

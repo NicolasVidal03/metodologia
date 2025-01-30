@@ -64,6 +64,7 @@ const DogRecognition = () => {
           setResult({ message: 'No se encontraron coincidencias' });
         } else {
           setResult(response.data);
+          console.log('HOLAAAAAAAAAA', response.data)
         }
       }
     } catch (error) {
